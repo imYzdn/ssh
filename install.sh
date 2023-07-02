@@ -9,9 +9,12 @@ mkdir /etc/stunnel
 cat << EOF > /etc/stunnel/stunnel.conf
 cert = /etc/stunnel/stunnel.pem
 [openssh]
-accept = 443
+accept = 444
 connect = 0.0.0.0:22
 EOF
+sudo nano /etc/stunnel/stunnel.pem
+chmod 777 /etc/stunnel/stunnel.conf
+stunnel4 stunnel.conf
 cat << EOF > adduser.sh
 #!/bin/bash
 sudo adduser \$1 --shell /usr/sbin/nologin &
@@ -37,11 +40,13 @@ sudo apt install python3-pip -y
 sudo apt install redis -y
 pip3 install redis flask waitress requests
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/Nethogs-Json-main/master/install.sh --ipv4)
+wget  "https://raw.githubusercontent.com/radkesvat/FakeTlsTunnel/master/install.sh" -O install.sh && chmod +x install.sh && bash install.sh 
 clear
 printf "Secure SSHD"
 cat << EOF > /etc/ssh/sshd_config
 Port 22
 Protocol 2
+Banner /root/banner.txt
 KeyRegenerationInterval 3600
 ServerKeyBits 1024
 SyslogFacility AUTH
@@ -90,3 +95,4 @@ clear
 } > /dev/null
 service ssh restart > /dev/null; sleep 2s; passwd
 printf "Done"
+printf ""
