@@ -19,21 +19,18 @@ wait
 sudo passwd $1 <<!
 $2
 $2
-!
 EOF
 cat << EOF > changepass.sh
 #!/bin/bash
 sudo passwd $1 <<!
 $2
 $2
-!
 EOF
 cat << EOF > deleteuser.sh
 #!/bin/bash
 sudo killall -u $1
 wait
 sudo userdel -r $1
-!
 EOF
 sudo apt install python3-pip -y
 sudo apt install redis -y
