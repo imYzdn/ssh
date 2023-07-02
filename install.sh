@@ -14,24 +14,25 @@ connect = 0.0.0.0:22
 EOF
 cat << EOF > adduser.sh
 #!/bin/bash
-sudo adduser $1 --shell /usr/sbin/nologin &
+sudo adduser \$1 --shell /usr/sbin/nologin &
 wait
-sudo passwd $1 <<!
-$2
-$2
+sudo passwd \$1 <<!
+\$2
+\$2
 EOF
 cat << EOF > changepass.sh
 #!/bin/bash
-sudo passwd $1 <<!
-$2
-$2
+sudo passwd \$1 <<!
+\$2
+\$2
 EOF
 cat << EOF > deleteuser.sh
 #!/bin/bash
-sudo killall -u $1
+sudo killall -u \$1
 wait
-sudo userdel -r $1
+sudo userdel -r \$1
 EOF
+chmod 777 adduser.sh changepass.sh deleteuser.sh
 sudo apt install python3-pip -y
 sudo apt install redis -y
 pip3 install redis flask waitress requests
