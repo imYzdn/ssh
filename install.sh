@@ -1,5 +1,6 @@
 #!/bin/bash
 printf "INSTALLING ..."
+apt update
 apt-get install -y stunnel4
 cat << EOF > /root/banner.txt
     @IranProxy
@@ -11,7 +12,7 @@ cat << EOF > /etc/stunnel/stunnel.conf
     accept = 443
     connect = 0.0.0.0:22
 EOF
-sudo apt install python3-pip
+sudo apt install python3-pip -y
 pip3 install redis flask waitress requests
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/Nethogs-Json-main/master/install.sh --ipv4)
 clear
