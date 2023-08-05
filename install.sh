@@ -39,6 +39,7 @@ chmod 777 adduser.sh changepass.sh deleteuser.sh
 sudo apt install python3-pip -y
 sudo apt install redis -y
 pip3 install redis flask waitress requests
+sudo apt-get install libuser
 bash <(curl -Ls https://raw.githubusercontent.com/Alirezad07/Nethogs-Json-main/master/install.sh --ipv4)
 wget  "https://raw.githubusercontent.com/radkesvat/FakeTlsTunnel/master/install.sh" -O install.sh && chmod +x install.sh && bash install.sh 
 clear
